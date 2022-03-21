@@ -6,10 +6,10 @@ from config import reddit
 
 posts = []
 aww_subreddit = reddit.subreddit('aww')
-for post in aww_subreddit.top(limit=10):
+for post in aww_subreddit.top(limit=100):
     posts.append([post.title, post.score, post.id, post.subreddit, post.url, post.num_comments, post.selftext, post.created])
     submission = reddit.submission(id = str(post.id))
-    submission.comments.replace_more(limit = 1)
+    submission.comments.replace_more(limit = 3)
     f = open(f'data/comments/{post.title}.txt', 'w')
     for top_level_comment in submission.comments:
         f.write(str(top_level_comment.body))
