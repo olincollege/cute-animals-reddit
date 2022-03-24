@@ -3,6 +3,8 @@ import pandas as pd
 
 animals = {}
 count = {}
+data_table = pd.read_fwf('data/general_data.txt')
+
 with open("animal_list.csv") as csvfile:
     animal_list = csv.reader(csvfile)
     for row in animal_list:
@@ -18,7 +20,7 @@ with open("data/comments/hzkbop.txt", "r") as f:
     for key in animals.keys():
        for value in animals[key]:
            count[key] += comments.count(value)
-print(count)
+
 
 
 
