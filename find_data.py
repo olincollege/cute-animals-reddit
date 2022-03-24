@@ -8,14 +8,16 @@ posts = []
 aww_subreddit = reddit.subreddit('aww')
 for post in aww_subreddit.top(limit=1000):
     posts.append([post.title, post.score, post.id, post.subreddit, post.url, post.num_comments, post.selftext, post.created])
+    '''
     submission = reddit.submission(id = str(post.id))
     submission.comments.replace_more(limit = 5)
     f = open(f'data/comments/{post.id}.txt', 'w')
     for top_level_comment in submission.comments:
         f.write(str(top_level_comment.body) + '\n')
     f.close()
-
+'''
 posts = pd.DataFrame(posts,columns=['title', 'score', 'id', 'subreddit', 'url', 'num_comments', 'body', 'created'])
-f = open(f'data/general_data.txt', 'w')
+posts = posts.to_string()
+f = open(f'data/general_data1.txt', 'w')
 f.write(str(posts))
 f.close()
