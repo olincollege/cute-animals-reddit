@@ -34,12 +34,22 @@ for key in animals_dict.keys():
         total_comments = 0
         for id in animals_dict[key]:
             total_upvotes += int(data_table.loc[data_table['id'] == id]['score'])
-            #total_comments += int(data_table.query(f'id == {id}')['num_comments'])
+            total_comments += int(data_table.loc[data_table['id'] == id]['num_comments'])
         upvotes_total.append(total_upvotes)
+        comments_total.append(total_comments)
 upvote_graph = plt.subplot()
 plt.bar(x_axis,upvotes_total, width = 0.8)
 plt.title('Upvotes per Animal')
 plt.xlabel('Animal')
 plt.ylabel('Upvotes')
-plt.setp(upvote_graph.get_xticklabels(), rotation=90, ha='right')
+plt.setp(upvote_graph.get_xticklabels(), rotation=70)
 plt.savefig('visualizations/upvotes.png')
+
+#This needs to be fixed
+comment_graph = plt.subplot()
+plt.bar(x_axis,comments_total, width = 0.8)
+plt.title('Comments per Animal')
+plt.xlabel('Animal')
+plt.ylabel('Number of Comments')
+plt.setp(upvote_graph.get_xticklabels(), rotation=70)
+plt.savefig('visualizations/comments.png')
