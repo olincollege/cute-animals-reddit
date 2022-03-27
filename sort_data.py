@@ -26,7 +26,7 @@ def find_number_mentions(id, data_table):
             comments = comments.lower()
             for key in animals.keys():
                 for value in animals[key]:
-                    counts[key] += comments.count(value)
+                    counts[key] += comments.count(' '+ value)
         f.close()
         return counts
 def find_which_animal(counts):
@@ -35,16 +35,19 @@ def find_which_animal(counts):
     for key in counts.keys():
         total += counts[key]
     for key in counts.keys():
-        if counts[key]/total > .3:
+        if counts[key]/total > .3 and counts[key] > 5:
             found_animals.append(key)
     if found_animals == []:
         return ['undefined']
     return found_animals
 
 
-
-
-
-
-        
-    
+data_table = pd.read_fwf('data/general_data1.txt')
+post_sorted = {}
+for id in data_table.id:
+    counts = find_number_mentions(id, data_table)
+    post_animal = find_which_animal(counts)
+    post_sorted[id] = post_animal
+f = open(f'data/sorted_animals.txt', 'w')
+f.write(str(post_sorted))
+f.close()
