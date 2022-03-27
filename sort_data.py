@@ -37,9 +37,9 @@ def find_which_animal(counts):
     for key in counts.keys():
         if counts[key]/total > .3:
             found_animals.append(key)
+    if found_animals == []:
+        return ['undefined']
     return found_animals
-data_table = pd.read_fwf('data/general_data1.txt')
-print(find_which_animal(find_number_mentions('aotk7n', data_table)))
 
 
 
