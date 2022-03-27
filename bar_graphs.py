@@ -1,5 +1,5 @@
 import csv
-from itertools import count 
+from itertools import count
 import pandas as pd
 import ast
 import matplotlib.pyplot as plt
@@ -32,9 +32,11 @@ for key in animals_dict.keys():
         x_axis.append(key)
         total_upvotes = 0
         total_comments = 0
-        for id in animals_dict[key]:
-            total_upvotes += int(data_table.loc[data_table['id'] == id]['score'])
-            total_comments += int(data_table.loc[data_table['id'] == id]['num_comments'])
+        for post_id in animals_dict[key]:
+            total_upvotes += int(data_table.loc[data_table['id'] == post_id]\
+                ['score'])
+            total_comments += int(data_table.loc[data_table['id'] == post_id]\
+                ['num_comments'])
         upvotes_total.append(total_upvotes)
         comments_total.append(total_comments)
 upvote_graph = plt.subplot()
@@ -51,5 +53,6 @@ plt.bar(x_axis,comments_total, width = 0.8)
 plt.title('Comments per Animal')
 plt.xlabel('Animal')
 plt.ylabel('Number of Comments')
+
 plt.setp(upvote_graph.get_xticklabels(), rotation=70)
 plt.savefig('visualizations/comments.png')

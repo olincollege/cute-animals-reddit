@@ -1,15 +1,18 @@
-from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
-import matplotlib.pyplot as plt
 import ast
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+
 
 def create_word_cloud(animal):
+    '''
+    '''
     text = ''
     with open('data/animals_posts.txt', 'r') as animals_id:
         animals_dict = ast.literal_eval(str(animals_id.read()))
-    for id in animals_dict[animal]:
-        f = open(f"data/comments/{id}.txt", 'r')
-        text += str(f.read())
-        f.close()
+    for post_id in animals_dict[animal]:
+        comment = open(f"data/comments/{post_id}.txt", 'r')
+        text += str(comment.read())
+        comment.close()
     word_cloud = WordCloud().generate(text)
     plt.imshow(word_cloud, interpolation='bilinear')
     plt.axis("off")
