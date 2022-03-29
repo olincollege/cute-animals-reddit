@@ -21,18 +21,18 @@ def find_totals():
             total_upvotes = 0
             total_comments = 0
             for post_id in animals_dict[key]:
-                total_upvotes += int(data_table.loc[data_table['id'] == post_id]\
-                    ['score'])
-                total_comments += int(data_table.loc[data_table['id'] == post_id]\
-                    ['num_comments'])
+                total_upvotes += int(data_table.loc[data_table['id']\
+                     == post_id]['score'])
+                total_comments += int(data_table.loc[data_table['id']\
+                     == post_id]['num_comments'])
             upvotes_total.append(total_upvotes)
             comments_total.append(total_comments)
     return upvotes_total, comments_total, x_axis
 
-upvotes_total, comments_total, x_axis = find_totals()
+upvotes_animals, comments_animals, animal_list = find_totals()
 plt.figure()
 upvote_graph = plt.subplot()
-plt.bar(x_axis,upvotes_total, width = 0.8)
+plt.bar(animal_list,upvotes_animals, width = 0.8)
 plt.title('Upvotes per Animal')
 plt.xlabel('Animal')
 plt.ylabel('Upvotes')
@@ -41,7 +41,7 @@ plt.savefig('visualizations/upvotes.png')
 
 plt.figure()
 comment_graph = plt.subplot()
-plt.bar(x_axis,comments_total, width = 0.8)
+plt.bar(animal_list,comments_animals, width = 0.8)
 plt.title('Comments per Animal')
 plt.xlabel('Animal')
 plt.ylabel('Number of Comments')
