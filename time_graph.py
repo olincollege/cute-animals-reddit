@@ -1,6 +1,6 @@
+import ast
 import datetime
 import pandas as pd
-import ast
 import matplotlib.pyplot as plt
 
 
@@ -15,9 +15,15 @@ def organize_by_time(animal):
                 ['created']
         temp = datetime.datetime.fromtimestamp(float((timestamp)))
         time = temp.year
-        if time not in upvotes_time.keys() and time not in comments_time.keys():
+        if time not in upvotes_time and time not in comments_time:
             upvotes_time[time] = 0
             comments_time[time] = 0
+        if 2016 not in upvotes_time:
+            upvotes_time[2016] = 0
+            comments_time[2016] = 0
+        if 2022 not in upvotes_time:
+            upvotes_time[2022] = 0
+            comments_time[2022] = 0
         upvotes_time[time] += int(data_table.loc[data_table['id'] == post_id]\
                 ['score'])
         comments_time[time] += int(data_table.loc[data_table['id'] == post_id]\
@@ -29,10 +35,55 @@ def organize_by_time(animal):
     graph_comments = [x[1] for x in comments]
     return graph_year, graph_upvotes, graph_comments
 
+dogs = organize_by_time('dog')
+cats = organize_by_time('cat')
+humans = organize_by_time('human')
+birds = organize_by_time('bird')
+total_upvotes = []
+total_comments = []
+for index, _ in enumerate(dogs[0]):
+    total_upvotes.append(dogs[1][index] + cats[1][index] + \
+        humans[1][index] + birds[1][index])
+    total_comments.append(dogs[2][index] + cats[2][index] + \
+        humans[2][index] + birds[2][index])
 
+percentage_dogs_upvotes = [x/total_upvotes[index] for \
+    index, x in enumerate(dogs[1])]
+percentage_cats_upvotes = [x/total_upvotes[index] for \
+    index, x in enumerate(cats[1])]
+percentage_humans_upvotes = [x/total_upvotes[index] for \
+    index, x in enumerate(humans[1])]
+percentage_birds_upvotes = [x/total_upvotes[index] for \
+    index, x in enumerate(birds[1])]
 
-plt.plot(organize_by_time('dog')[0],organize_by_time('dog')[1], label= 'Dog')
-plt.plot(organize_by_time('cat')[0],organize_by_time('cat')[1], label= 'Cat')
-plt.plot(organize_by_time('human')[0],organize_by_time('human')[1], label= 'Human')
+percentage_dogs_comments = [x/total_comments[index] for \
+    index, x in enumerate(dogs[2])]
+percentage_cats_comments = [x/total_comments[index] for \
+    index, x in enumerate(cats[2])]
+percentage_humans_comments = [x/total_comments[index] for \
+    index, x in enumerate(humans[2])]
+percentage_birds_comments = [x/total_comments[index] for \
+    index, x in enumerate(birds[2])]
+
+plt.figure()
+plt.title('Time Graph of Upvotes Percentage on Top 1000 Posts')
+plt.xlabel('Year')
+plt.ylabel('Percentage of Upvotes')
+plt.plot(organize_by_time('dog')[0],percentage_dogs_upvotes, label= 'Dog')
+plt.plot(organize_by_time('cat')[0],percentage_cats_upvotes, label= 'Cat')
+plt.plot(organize_by_time('human')[0],percentage_humans_upvotes, label= 'Human')
+plt.plot(organize_by_time('bird')[0],percentage_birds_upvotes, label= 'Birds')
 plt.legend()
-plt.show()
+plt.savefig('visualizations/time_graph_upvotes.png')
+
+plt.figure()
+plt.title('Time Graph of Comment Percentage on Top 1000 Posts')
+plt.xlabel('Years')
+plt.ylabel('Percentage of Comments')
+plt.plot(organize_by_time('dog')[0],percentage_dogs_comments, label= 'Dog')
+plt.plot(organize_by_time('cat')[0],percentage_cats_comments, label= 'Cat')
+plt.plot(organize_by_time('human')[0],percentage_humans_comments,\
+     label= 'Human')
+plt.plot(organize_by_time('bird')[0],percentage_birds_comments, label= 'Birds')
+plt.legend()
+plt.savefig('visualizations/time_graph_comments.png')
