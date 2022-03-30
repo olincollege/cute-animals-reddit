@@ -28,3 +28,4 @@ def create_word_cloud(animal):
 create_word_cloud('dog')
 create_word_cloud('cat')
 create_word_cloud('human')
+create_word_cloud('bird')
