@@ -1,3 +1,7 @@
+'''
+This file creates the time graphs for the top 5 animals
+    in r/aww.
+'''
 import ast
 import datetime
 import pandas as pd
@@ -5,6 +9,19 @@ import matplotlib.pyplot as plt
 
 
 def organize_by_time(animal):
+    '''
+    Finds the total number of upvotes and comments for a specific
+        animal for each year within the top 1000 posts in r/aww
+    Args:
+        animal: a string that is an animal name
+
+    Returns:
+        graph_year: a list that is all the years within the top 1000 posts
+        graph_upvotes: a list with total number of upvotes for each year
+            for that animal
+        graph_comments: a list with the total number of comments for each year
+            for that animal
+    '''
     upvotes_time = {}
     comments_time = {}
     data_table = pd.read_fwf('data/general_data1.txt')
