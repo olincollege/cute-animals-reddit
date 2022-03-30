@@ -6,6 +6,13 @@ import pandas as pd
 from config import reddit
 
 def get_data():
+    '''
+    This function finds the top 1000 posts in r/aww and
+        finds information, such as number of upvotes,
+        number of comments and date created, and puts
+        all the top level comments for each post in a
+        txt file.
+    '''
     posts = []
     aww_subreddit = reddit.subreddit('aww')
     for post in aww_subreddit.top(limit=1000):
