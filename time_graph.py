@@ -83,9 +83,9 @@ percentage_birds_comments = [x/total_comments[index] for \
     index, x in enumerate(birds[2])]
 
 plt.figure()
-plt.title('Time Graph of Upvotes Percentage on Top 1000 Posts')
+plt.title('Time Graph of Upvotes Proportion on Top 1000 Posts')
 plt.xlabel('Year')
-plt.ylabel('Percentage of Upvotes')
+plt.ylabel('Proportion of Upvotes')
 plt.plot(organize_by_time('dog')[0],percentage_dogs_upvotes, label= 'Dog')
 plt.plot(organize_by_time('cat')[0],percentage_cats_upvotes, label= 'Cat')
 plt.plot(organize_by_time('human')[0],percentage_humans_upvotes, label= 'Human')
@@ -94,9 +94,9 @@ plt.legend()
 plt.savefig('visualizations/time_graph_upvotes.png')
 
 plt.figure()
-plt.title('Time Graph of Comment Percentage on Top 1000 Posts')
+plt.title('Time Graph of Comment Proportion on Top 1000 Posts')
 plt.xlabel('Years')
-plt.ylabel('Percentage of Comments')
+plt.ylabel('Proportion of Comments')
 plt.plot(organize_by_time('dog')[0],percentage_dogs_comments, label= 'Dog')
 plt.plot(organize_by_time('cat')[0],percentage_cats_comments, label= 'Cat')
 plt.plot(organize_by_time('human')[0],percentage_humans_comments,\
