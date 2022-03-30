@@ -9,6 +9,16 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 def find_totals():
+    '''
+    This function finds the total number of upvotes and comments for each
+        animal in animal_list.csv
+
+    Returns:
+        upvotes_total: a list with the total number of upvotes for each animal
+        comments_total: a list with the total number of comments for each
+            animal
+        x_axis: a list of all the animals with any upvotes or comments
+    '''
     with open('data/animals_posts.txt', 'r',  encoding="utf8") as animals_id:
         animals_dict = ast.literal_eval(str(animals_id.read()))
     x_axis = []
@@ -29,19 +39,36 @@ def find_totals():
             comments_total.append(total_comments)
     return upvotes_total, comments_total, x_axis
 
+
+
 upvotes_animals, comments_animals, animal_list = find_totals()
+upvotes_sorted = pd.DataFrame({'x': animal_list, 'y': upvotes_animals})
+upvotes_sorted = upvotes_sorted.sort_values('y')
+upvotes_sorted = upvotes_sorted.iloc[::-1]
+upvotes_sorted = pd.DataFrame(list(zip(upvotes_sorted['y'],\
+     upvotes_sorted['x']))).set_index(1)
+
+comments_sorted = pd.DataFrame({'x': animal_list, 'y':\
+     comments_animals})
+comments_sorted = comments_sorted.sort_values('y')
+comments_sorted = comments_sorted.iloc[::-1]
+comments_sorted = pd.DataFrame(list(zip(comments_sorted['y'],\
+     comments_sorted['x']))).set_index(1)
+
 plt.figure()
 upvote_graph = plt.subplot()
-plt.bar(animal_list,upvotes_animals, width = 0.8)
+upvotes_sorted.plot.bar(width = 0.8, align='center', legend =None,\
+     figsize=(11, 9))
 plt.title('Upvotes per Animal')
 plt.xlabel('Animal')
 plt.ylabel('Upvotes')
 plt.setp(upvote_graph.get_xticklabels(), rotation=70)
 plt.savefig('visualizations/upvotes.png')
 
-plt.figure()
+plt.figure(figsize=(11, 9), dpi=80)
 comment_graph = plt.subplot()
-plt.bar(animal_list,comments_animals, width = 0.8)
+comments_sorted.plot.bar(width = 0.8, align='center', legend =None,\
+     figsize=(11, 9))
 plt.title('Comments per Animal')
 plt.xlabel('Animal')
 plt.ylabel('Number of Comments')
