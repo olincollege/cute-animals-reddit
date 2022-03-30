@@ -20,7 +20,7 @@ def get_data():
             post.url, post.num_comments, post.selftext, post.created])
         submission = reddit.submission(id = str(post.id))
         submission.comments.replace_more(limit = 5)
-        with open(f'data/comments/{post.id}.txt', 'w', encoding="utf8")\
+        with open(f'data/comments/{post.id}.txt', 'w', encoding='utf8')\
              as post_comment:
             for top_level_comment in submission.comments:
                 post_comment.write(str(top_level_comment.body) + '\n')
@@ -28,6 +28,6 @@ def get_data():
     posts = pd.DataFrame(posts,columns=['title', 'score', 'id', 'subreddit',\
         'url', 'num_comments', 'body', 'created'])
     posts = posts.to_string()
-    with open('data/general_data1.txt', 'w', encoding="utf8") as general_data:
+    with open('data/general_data1.txt', 'w', encoding='utf8') as general_data:
         general_data.write(str(posts))
 get_data()

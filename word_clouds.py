@@ -15,10 +15,10 @@ def create_word_cloud(animal):
         animal: a string that is an animal name
     '''
     text = ''
-    with open('data/animals_posts.txt', 'r', encoding="utf8") as animals_id:
+    with open('data/animals_posts.txt', 'r', encoding='utf8') as animals_id:
         animals_dict = ast.literal_eval(str(animals_id.read()))
     for post_id in animals_dict[animal]:
-        with open(f'data/comments/{post_id}.txt', 'r', encoding="utf8")\
+        with open(f'data/comments/{post_id}.txt', 'r', encoding='utf8')\
              as comment:
             text += str(comment.read())
     word_cloud = WordCloud().generate(text)

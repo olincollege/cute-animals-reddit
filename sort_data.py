@@ -25,7 +25,7 @@ def find_number_mentions(post_id, data_table):
     '''
     animals = {}
     initial_count = {}
-    with open('animal_list.csv', encoding="utf8") as csvfile:
+    with open('animal_list.csv', encoding='utf8') as csvfile:
         animal_list = csv.reader(csvfile)
         for row in animal_list:
             while'' in row:
@@ -33,7 +33,7 @@ def find_number_mentions(post_id, data_table):
             initial_count[row[0]] = 0
             animals[row[0]] = row
         counts = initial_count
-        with open(f'data/comments/{post_id}.txt', 'r', encoding="utf8")\
+        with open(f'data/comments/{post_id}.txt', 'r', encoding='utf8')\
              as comments:
             titles = str(data_table[data_table['id']==post_id]['title'])
             for key, value in animals.items():
@@ -73,7 +73,7 @@ def find_which_animal(counts):
 post_sorted = {}
 animals_id = {}
 data = pd.read_fwf('data/general_data1.txt')
-with open('animal_list.csv', encoding="utf8") as list_animals:
+with open('animal_list.csv', encoding='utf8') as list_animals:
     list_animals = csv.reader(list_animals)
     for animal_names in list_animals:
         while '' in animal_names :
@@ -87,7 +87,7 @@ for ids in data.id:
         if animal != 'undefined':
             animals_id[animal].append(ids)
     post_sorted[ids] = post_animal
-with open('data/sorted_animals.txt', 'w', encoding="utf8") as sorted_animals:
+with open('data/sorted_animals.txt', 'w', encoding='utf8') as sorted_animals:
     sorted_animals.write(str(post_sorted))
-with open('data/animals_posts.txt', 'w', encoding="utf8") as animals_posts:
+with open('data/animals_posts.txt', 'w', encoding='utf8') as animals_posts:
     animals_posts.write(str(animals_id))

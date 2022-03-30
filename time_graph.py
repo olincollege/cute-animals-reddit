@@ -25,7 +25,7 @@ def organize_by_time(animal):
     upvotes_time = {}
     comments_time = {}
     data_table = pd.read_fwf('data/general_data1.txt')
-    with open('data/animals_posts.txt', 'r',  encoding="utf8") as animals_id:
+    with open('data/animals_posts.txt', 'r',  encoding='utf8') as animals_id:
         animals_dict = ast.literal_eval(str(animals_id.read()))
     for post_id in animals_dict[animal]:
         timestamp = data_table.loc[data_table['id'] == post_id]\
