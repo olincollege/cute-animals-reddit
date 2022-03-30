@@ -21,9 +21,11 @@ def create_word_cloud(animal):
         with open(f'data/comments/{post_id}.txt', 'r', encoding='utf8')\
              as comment:
             text += str(comment.read())
-    word_cloud = WordCloud().generate(text)
+    plt.figure( figsize=(20,10) )
+    word_cloud = WordCloud(width=1600, height=800).generate(text)
     plt.imshow(word_cloud, interpolation='bilinear')
     plt.axis('off')
+    plt.tight_layout(pad=0)
     plt.savefig(f'visualizations/{animal}wordcloud.png')
 create_word_cloud('dog')
 create_word_cloud('cat')
