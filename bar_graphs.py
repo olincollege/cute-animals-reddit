@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 def find_totals():
     '''
     This function finds the total number of upvotes and comments for each
-        animal in animal_list.csv
+        animal in animal_list.csv.
 
     Returns:
         upvotes_total: a list with the total number of upvotes for each animal
@@ -25,6 +25,7 @@ def find_totals():
     upvotes_total = []
     comments_total = []
     data_table = pd.read_fwf('data/general_data1.txt')
+    #For each animal, it adds it to x axis, and find the total number of upvotes and comments.
     for key in animals_dict.keys():
         if animals_dict[key] != []:
             x_axis.append(key)
@@ -40,21 +41,21 @@ def find_totals():
     return upvotes_total, comments_total, x_axis
 
 
-
+#Sorts by number of upvotes.
 upvotes_animals, comments_animals, animal_list = find_totals()
 upvotes_sorted = pd.DataFrame({'x': animal_list, 'y': upvotes_animals})
 upvotes_sorted = upvotes_sorted.sort_values('y')
 upvotes_sorted = upvotes_sorted.iloc[::-1]
 upvotes_sorted = pd.DataFrame(list(zip(upvotes_sorted['y'],\
      upvotes_sorted['x']))).set_index(1)
-
+#Sorts by number of comments. 
 comments_sorted = pd.DataFrame({'x': animal_list, 'y':\
      comments_animals})
 comments_sorted = comments_sorted.sort_values('y')
 comments_sorted = comments_sorted.iloc[::-1]
 comments_sorted = pd.DataFrame(list(zip(comments_sorted['y'],\
      comments_sorted['x']))).set_index(1)
-
+#Plots and formats upvote bar graph. 
 plt.figure()
 upvote_graph = plt.subplot()
 upvotes_sorted.plot.bar(width = 0.8, align='center', legend =None,\
@@ -68,7 +69,7 @@ plt.ticklabel_format(axis="y", style="plain")
 plt.setp(upvote_graph.get_xticklabels(), rotation=70)
 plt.tight_layout()
 plt.savefig('visualizations/upvotes.png')
-
+#Plots and formats comments bar graph. 
 plt.figure(figsize=(12, 10), dpi=80)
 comment_graph = plt.subplot()
 comments_sorted.plot.bar(width = 0.8, align='center', legend =None,\

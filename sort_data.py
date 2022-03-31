@@ -15,23 +15,27 @@ def find_number_mentions(post_id, data_table):
     This function counts how many times each animal is mentioned in the comments
         based on the name of the animal and its alternate names.
     Args:
-        post_id: A string that contains the id of a post
+        post_id: A string that contains the id of a post.
         data_table: A panda that contains data about the post,
-                    such as title, upvotes and number of comments
+                    such as title, upvotes and number of comments.
     Returns:
         counts: A dictionary containing each animal and number of
-                times it is mentioned in a post comments and title
+                times it is mentioned in a post comments and title.
 
     '''
     animals = {}
     initial_count = {}
     with open('animal_list.csv', encoding='utf8') as csvfile:
         animal_list = csv.reader(csvfile)
+        #Creates a dictionary with all the animals as keys and remove empty
+        # values.
         for row in animal_list:
             while'' in row:
                 row.remove('')
             initial_count[row[0]] = 0
             animals[row[0]] = row
+        #Read each file and make every character lowercase, then counts each
+        #time an animal is mentioned in the title and comments. 
         counts = initial_count
         with open(f'data/comments/{post_id}.txt', 'r', encoding='utf8')\
              as comments:
@@ -51,19 +55,20 @@ def find_which_animal(counts):
     '''
     Takes in a dictionary that has the number of times an animal is mentioned
         in a post's comments and titles and determines which animals the post
-        is about
+        is about.
     Args:
         counts: a dictionary that has each animal as a key that has a value
                 that represents how many times it is mentioned in a posts
-                comments or title
+                comments or title.
     Returns:
-        found_animals: a list that has the animal/animals that are in the post
+        found_animals: a list that has the animal/animals that are in the post.
     '''
     total = 0
     found_animals = []
     for key, _ in counts.items():
         total += counts[key]
     for key, _ in counts.items():
+        #Decided that threshold is 30% of all mentions and must be mentioned 5 times.
         if counts[key]/total > .3 and counts[key] > 5:
             found_animals.append(key)
     if not found_animals:

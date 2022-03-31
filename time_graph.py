@@ -1,5 +1,5 @@
 '''
-This file creates the time graphs for the top 5 animals
+This file creates the time graphs for the top 4 animals
     in r/aww.
 '''
 import ast
@@ -11,16 +11,16 @@ import matplotlib.pyplot as plt
 def organize_by_time(animal):
     '''
     Finds the total number of upvotes and comments for a specific
-        animal for each year within the top 1000 posts in r/aww
+        animal for each year within the top 1000 posts in r/aww.
     Args:
-        animal: a string that is an animal name
+        animal: a string that is an animal name.
 
     Returns:
-        graph_year: a list that is all the years within the top 1000 posts
+        graph_year: a list that is all the years within the top 1000 posts.
         graph_upvotes: a list with total number of upvotes for each year
-            for that animal
+            for that animal.
         graph_comments: a list with the total number of comments for each year
-            for that animal
+            for that animal.
     '''
     upvotes_time = {}
     comments_time = {}
@@ -28,10 +28,12 @@ def organize_by_time(animal):
     with open('data/animals_posts.txt', 'r',  encoding='utf8') as animals_id:
         animals_dict = ast.literal_eval(str(animals_id.read()))
     for post_id in animals_dict[animal]:
+        #Converts time stamp into date time. 
         timestamp = data_table.loc[data_table['id'] == post_id]\
                 ['created']
         temp = datetime.datetime.fromtimestamp(float((timestamp)))
         time = temp.year
+        #Adds time.
         if time not in upvotes_time and time not in comments_time:
             upvotes_time[time] = 0
             comments_time[time] = 0
@@ -45,6 +47,7 @@ def organize_by_time(animal):
                 ['score'])
         comments_time[time] += int(data_table.loc[data_table['id'] == post_id]\
                 ['num_comments'])
+    #Sorts upvotes and comments by year. 
     upvote = sorted(upvotes_time.items())
     comments = sorted(comments_time.items())
     graph_year = [x[0] for x in upvote]
@@ -81,7 +84,7 @@ percentage_humans_comments = [x/total_comments[index] for \
     index, x in enumerate(humans[2])]
 percentage_birds_comments = [x/total_comments[index] for \
     index, x in enumerate(birds[2])]
-
+#Graphs time plot for upvotes of the top 4 animals. 
 plt.figure()
 plt.title('Time Graph of Upvotes Proportion on Top 1000 Posts')
 plt.xlabel('Year')
@@ -92,7 +95,7 @@ plt.plot(organize_by_time('human')[0],percentage_humans_upvotes, label= 'Human')
 plt.plot(organize_by_time('bird')[0],percentage_birds_upvotes, label= 'Birds')
 plt.legend()
 plt.savefig('visualizations/time_graph_upvotes.png')
-
+#Graphs time plot for comments of the top 4 animals. 
 plt.figure()
 plt.title('Time Graph of Comment Proportion on Top 1000 Posts')
 plt.xlabel('Years')

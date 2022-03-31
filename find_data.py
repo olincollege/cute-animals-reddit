@@ -1,5 +1,5 @@
 '''
-Scrapes Reddit to get all the comments and other associated data
+Scrapes Reddit to get all the top level comments and other associated data
     from the top 1000 posts in r/awww
 '''
 import pandas as pd
@@ -15,6 +15,7 @@ def get_data():
     '''
     posts = []
     aww_subreddit = reddit.subreddit('aww')
+    #Adds data on each post and writes it into a txt file. 
     for post in aww_subreddit.top(limit=1000):
         posts.append([post.title, post.score, post.id, post.subreddit, \
             post.url, post.num_comments, post.selftext, post.created])
