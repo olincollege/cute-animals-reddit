@@ -15,7 +15,7 @@ def find_number_mentions(post_id, data_table):
     This function counts how many times each animal is mentioned in the comments
         based on the name of the animal and its alternate names. It also checks
         for variations by looking for keywords within words used to name an animal.
-        
+
     Args:
         post_id: A string that contains the id of a post.
         data_table: A panda that contains data about the post,
@@ -78,7 +78,7 @@ def find_which_animal(counts):
         return ['undefined']
     return found_animals
 
-def sort_posts(animal_csv):
+def sort_posts(animal_csv, data):
     '''
     Takes in a csv where each row is all the potential names a pet
         can be called and sorts each post into which animal it is
@@ -86,6 +86,8 @@ def sort_posts(animal_csv):
         animal_csv: a string that is the path for a csv file
             where each row is all the potential names an animal
             can be called.
+        data: A panda that contains data about the post,
+            such as title, upvotes and number of comments.
     Returns:
         post_sorted: A dictionary where each key is an id and
             each value is a list of all the animals associated
@@ -96,7 +98,6 @@ def sort_posts(animal_csv):
     '''
     post_sorted = {}
     animals_id = {}
-    data = pd.read_fwf('data/general_data1.txt')
     with open(animal_csv, encoding='utf8') as list_animals:
         list_animals = csv.reader(list_animals)
         for animal_names in list_animals:
@@ -113,7 +114,7 @@ def sort_posts(animal_csv):
         post_sorted[ids] = post_animal
     return post_sorted, animals_id
 #Sorts all the posts based on our list of animal names
-all_posts_sorted, all_ids_sorted = sort_posts('animal_list.csv')
+all_posts_sorted, all_ids_sorted = sort_posts('animal_list.csv', pd.read_fwf('data/general_data1.txt'))
 with open('data/sorted_animals.txt', 'w', encoding='utf8') as sorted_animals:
     sorted_animals.write(str(all_posts_sorted))
 with open('data/animals_posts.txt', 'w', encoding='utf8') as animals_posts:
