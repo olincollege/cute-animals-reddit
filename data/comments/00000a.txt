@@ -1,6 +1,6 @@
  dog 
- pupper
+ pupper 
  lab 
- wolf
- doggo
- doggie
+ wolf 
+ doggo 
+ doggie 
