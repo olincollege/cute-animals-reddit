@@ -18,7 +18,7 @@ Our project aims to find the cutest animals in the r/aww subreddit by analyzing 
 3. Linear Time graphs to show over the years what proportion of upvotes and comments the top 4 animals have.
 
 ## Instructions
-1. In order to get data from Reddit using praw, you must also create a config.py file in the following format:
+In order to get data from Reddit using praw, you must also create a config.py file in the following format:
 ```python
 import praw
 
@@ -28,8 +28,4 @@ reddit = praw.Reddit(client_id='{YOUR_CLIENT_ID}', \
                      username='{YOUR_REDDIT_USERNAME}', \
                      password='{YOUR_REDDIT_PASSWORD}')
 ```
-2.  
-3. 
-4. 
-5. 
-6. In order to create the time graphs, run the time_graph.py file
+Once the config.py file is created run the `find_data.py` file to 

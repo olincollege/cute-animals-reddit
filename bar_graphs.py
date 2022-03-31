@@ -41,20 +41,26 @@ def find_totals():
     return upvotes_total, comments_total, x_axis
 
 
-#Sorts by number of upvotes.
-upvotes_animals, comments_animals, animal_list = find_totals()
-upvotes_sorted = pd.DataFrame({'x': animal_list, 'y': upvotes_animals})
-upvotes_sorted = upvotes_sorted.sort_values('y')
-upvotes_sorted = upvotes_sorted.iloc[::-1]
-upvotes_sorted = pd.DataFrame(list(zip(upvotes_sorted['y'],\
-     upvotes_sorted['x']))).set_index(1)
-#Sorts by number of comments. 
-comments_sorted = pd.DataFrame({'x': animal_list, 'y':\
-     comments_animals})
-comments_sorted = comments_sorted.sort_values('y')
-comments_sorted = comments_sorted.iloc[::-1]
-comments_sorted = pd.DataFrame(list(zip(comments_sorted['y'],\
-     comments_sorted['x']))).set_index(1)
+def sort_graph(data, animal_list):
+    '''
+    Takes data and the x axis associated with it and sorts it in descending order
+
+    Args:
+        data: a list with the total where the index is associated with an animal in animal_list
+        animal_list: a list with animals where each index is associated with a value in data
+    Returns:
+        sorted_data: a panda with the sorted x axis and y axis in descending order
+    '''
+    sorted_data = pd.DataFrame({'x': animal_list, 'y': data})
+    sorted_data = sorted_data.sort_values('y')
+    sorted_data = sorted_data.iloc[::-1]
+    sorted_data = pd.DataFrame(list(zip(sorted_data['y'],\
+        sorted_data['x']))).set_index(1)
+    return sorted_data
+
+upvote_animals, comments_animals, list_animals = find_totals()
+upvotes_sorted = sort_graph(upvote_animals, list_animals)
+comments_sorted = sort_graph(comments_animals, list_animals)
 #Plots and formats upvote bar graph. 
 plt.figure()
 upvote_graph = plt.subplot()
