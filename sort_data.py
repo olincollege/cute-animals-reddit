@@ -13,7 +13,9 @@ def find_number_mentions(post_id, data_table):
         mentioned.
 
     This function counts how many times each animal is mentioned in the comments
-        based on the name of the animal and its alternate names.
+        based on the name of the animal and its alternate names. It also checks
+        for variations by looking for keywords within words used to name an animal.
+        
     Args:
         post_id: A string that contains the id of a post.
         data_table: A panda that contains data about the post,
