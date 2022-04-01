@@ -27,6 +27,7 @@ def organize_by_time(animal, table_path, sorted_post_path):
     '''
     upvotes_time = {}
     comments_time = {}
+    year_list = [2016, 2017, 2018, 2019, 2020, 2021, 2022]
     data_table = pd.read_fwf(table_path)
     with open(sorted_post_path, 'r',  encoding='utf8') as animals_id:
         animals_dict = ast.literal_eval(str(animals_id.read()))
@@ -40,12 +41,10 @@ def organize_by_time(animal, table_path, sorted_post_path):
         if time not in upvotes_time and time not in comments_time:
             upvotes_time[time] = 0
             comments_time[time] = 0
-        if 2016 not in upvotes_time:
-            upvotes_time[2016] = 0
-            comments_time[2016] = 0
-        if 2022 not in upvotes_time:
-            upvotes_time[2022] = 0
-            comments_time[2022] = 0
+        for year in year_list:
+            if year not in upvotes_time:
+                upvotes_time[year] = 0
+                comments_time[year] = 0
         upvotes_time[time] += int(data_table.loc[data_table['id'] == post_id]\
                 ['score'])
         comments_time[time] += int(data_table.loc[data_table['id'] == post_id]\
@@ -71,7 +70,7 @@ def get_total(top_animals, table_path, sorted_post_path):
             with all the posts categorized into animals
     Returns:
         total_comments: a list of the total number of comments for all the
-            sanimals pecified for each year
+            animals pecified for each year
         total_upvotes: a list of the total number of upvotes for all the
             animals specified for each year
     '''
