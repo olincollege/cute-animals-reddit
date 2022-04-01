@@ -8,10 +8,14 @@ import ast
 import pandas as pd
 import matplotlib.pyplot as plt
 
-def find_totals():
+def find_totals(data_table, animal_sorted):
     '''
     This function finds the total number of upvotes and comments for each
         animal in animal_list.csv.
+    Args: 
+        data_table: a panda with all the data about each post
+        animal_sorted: a string that has a path to a file with
+            all the post ids sorted into animals
 
     Returns:
         upvotes_total: a list with the total number of upvotes for each animal
@@ -19,12 +23,11 @@ def find_totals():
             animal
         x_axis: a list of all the animals with any upvotes or comments
     '''
-    with open('data/animals_posts.txt', 'r',  encoding="utf8") as animals_id:
+    with open(animal_sorted, 'r',  encoding="utf8") as animals_id:
         animals_dict = ast.literal_eval(str(animals_id.read()))
     x_axis = []
     upvotes_total = []
     comments_total = []
-    data_table = pd.read_fwf('data/general_data1.txt')
     #For each animal, it adds it to x axis, and find the total number of upvotes and comments.
     for key in animals_dict.keys():
         if animals_dict[key] != []:
@@ -58,7 +61,7 @@ def sort_graph(data, animal_list):
         sorted_data['x']))).set_index(1)
     return sorted_data
 
-upvote_animals, comments_animals, list_animals = find_totals()
+upvote_animals, comments_animals, list_animals = find_totals(pd.read_fwf('data/general_data1.txt'), 'data/animals_posts.txt')
 upvotes_sorted = sort_graph(upvote_animals, list_animals)
 comments_sorted = sort_graph(comments_animals, list_animals)
 #Plots and formats upvote bar graph. 
