@@ -88,17 +88,4 @@ def test_sort_posts():
     Tests overall sorting for the 3 test files
     '''
     assert(sort_posts('animal_list.csv', pd.read_fwf('data/test_general_data.txt'))\
-        == ({'00000a': ['dog'], '00000b': ['cat'], '00000c': ['bird']},\
-            {'dog': ['00000a'], 'rabbit': [], 'bird': ['00000c'],\
-                'cat': ['00000b'], 'hamster': [], 'cow': [], 'shrimp': [],\
-                        'pig': [], 'crab': [], 'deer': [], 'sheep': [], 'fish': [],\
-                            'squirrel': [], 'panda': [], 'mouse': [], 'goat': [], 'horse': [],\
-                                'monkey': [], 'koala': [], 'mole': [], 'giraffe': [], 'camel': [],\
-                                    'starfish': [], 'alligator': [], 'bear': [], 'coyote': [], 'chimpanzee': [],\
-                                            'raccoon': [], 'crocodile': [], 'dolphin': [], 'elephant': [], 'snake': [],\
-                                                'kangaroo': [], 'hippopotamus': [], 'elk': [], 'fox': [], 'gorilla': [],\
-                                                    'bat': [], 'frog': [], 'badger': [], 'lizard': [], 'hedgehog': [],\
-                                                        'otter': [], 'reindeer': [], 'seal': [], 'octopus': [], 'shark': [],\
-                                                                'seahorse': [], 'walrus': [], 'whale': [], 'jellyfish': [], 'squid': [],\
-                                                                    'lobster': [], 'clams': [], 'seagull': [], 'sea urchin': [], 'sea anemone': [],\
-                                                                        'turtle': [], 'sea lion': [], 'human': [], 'orangutans': [], 'unidentified': []}))
+        == ({'00000a': ['dog'], '00000b': ['cat'], '00000c': ['bird'], '00000d': ['cat']}, {'dog': ['00000a'], 'rabbit': [], 'bird': ['00000c'], 'cat': ['00000b', '00000d'], 'hamster': [], 'cow': [], 'shrimp': [], 'pig': [], 'crab': [], 'deer': [], 'sheep': [], 'fish': [], 'squirrel': [], 'panda': [], 'mouse': [], 'goat': [], 'horse': [], 'monkey': [], 'koala': [], 'mole': [], 'giraffe': [], 'camel': [], 'starfish': [], 'alligator': [], 'bear': [], 'coyote': [], 'chimpanzee': [], 'raccoon': [], 'crocodile': [], 'dolphin': [], 'elephant': [], 'snake': [], 'kangaroo': [], 'hippopotamus': [], 'elk': [], 'fox': [], 'gorilla': [], 'bat': [], 'frog': [], 'badger': [], 'lizard': [], 'hedgehog': [], 'otter': [], 'reindeer': [], 'seal': [], 'octopus': [], 'shark': [], 'seahorse': [], 'walrus': [], 'whale': [], 'jellyfish': [], 'squid': [], 'lobster': [], 'clams': [], 'seagull': [], 'sea urchin': [], 'sea anemone': [], 'turtle': [], 'sea lion': [], 'human': [], 'orangutans': [], 'unidentified': []}))

@@ -1,3 +1,6 @@
  cat
  kitty
+ Kittens
+ Cat
+ cat
  I am raiyan siddique
