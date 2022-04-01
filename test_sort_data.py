@@ -7,7 +7,7 @@ def test_find_number_mentions_only_dog():
     Tests that a test file with only dog mentions and dog title has the correct number of dog mentions
     '''
 
-    assert(find_number_mentions('00000a', pd.read_fwf('data/test_general_data.txt')) == {'dog': 9, 'rabbit': 0,\
+    assert(find_number_mentions('00000a', pd.read_fwf('data/test_files/test_general_data.txt')) == {'dog': 9, 'rabbit': 0,\
         'bird': 0, 'cat': 0, 'hamster': 0, 'cow': 0, 'shrimp': 0, 'pig': 0, \
         'crab': 0, 'deer': 0, 'sheep': 0, 'fish': 0, 'squirrel': 0, 'panda': 0, 'mouse': 0,\
             'goat': 0, 'horse': 0, 'monkey': 0, 'koala': 0, 'mole': 0, 'giraffe': 0, 'camel': 0,\
@@ -23,7 +23,7 @@ def test_find_number_mentions_multiple_animals():
     Tests that a test file with mentions of more than one animal counts all the animals properly
     '''
     assert(find_number_mentions('00000b', \
-        pd.read_fwf('data/test_general_data.txt')) == \
+        pd.read_fwf('data/test_files/test_general_data.txt')) == \
             {'dog': 1, 'rabbit': 1, 'bird': 0, 'cat': 6, 'hamster': 0,\
                 'cow': 0, 'shrimp': 0, 'pig': 0, 'crab': 0, 'deer': 0,\
                     'sheep': 0, 'fish': 0, 'squirrel': 0, 'panda': 0,\
@@ -44,7 +44,7 @@ def test_find_number_mentions_with_words():
     Tests that a test file with many non-animal words still counts animals correctly
     '''
     assert(find_number_mentions('00000c', \
-        pd.read_fwf('data/test_general_data.txt')) == {'dog': 2, 'rabbit': 0,\
+        pd.read_fwf('data/test_files/test_general_data.txt')) == {'dog': 2, 'rabbit': 0,\
              'bird': 7, 'cat': 1, 'hamster': 0, 'cow': 0, 'shrimp': 0, 'pig': 0,\
                   'crab': 0, 'deer': 0, 'sheep': 0, 'fish': 0, 'squirrel': 0, \
                       'panda': 0, 'mouse': 0, 'goat': 0, 'horse': 0, 'monkey': 0,\
@@ -87,5 +87,5 @@ def test_sort_posts():
     '''
     Tests overall sorting for the 3 test files
     '''
-    assert(sort_posts('animal_list.csv', pd.read_fwf('data/test_general_data.txt'))\
+    assert(sort_posts('animal_list.csv', pd.read_fwf('data/test_files/test_general_data.txt'))\
         == ({'00000a': ['dog'], '00000b': ['cat'], '00000c': ['bird'], '00000d': ['cat']}, {'dog': ['00000a'], 'rabbit': [], 'bird': ['00000c'], 'cat': ['00000b', '00000d'], 'hamster': [], 'cow': [], 'shrimp': [], 'pig': [], 'crab': [], 'deer': [], 'sheep': [], 'fish': [], 'squirrel': [], 'panda': [], 'mouse': [], 'goat': [], 'horse': [], 'monkey': [], 'koala': [], 'mole': [], 'giraffe': [], 'camel': [], 'starfish': [], 'alligator': [], 'bear': [], 'coyote': [], 'chimpanzee': [], 'raccoon': [], 'crocodile': [], 'dolphin': [], 'elephant': [], 'snake': [], 'kangaroo': [], 'hippopotamus': [], 'elk': [], 'fox': [], 'gorilla': [], 'bat': [], 'frog': [], 'badger': [], 'lizard': [], 'hedgehog': [], 'otter': [], 'reindeer': [], 'seal': [], 'octopus': [], 'shark': [], 'seahorse': [], 'walrus': [], 'whale': [], 'jellyfish': [], 'squid': [], 'lobster': [], 'clams': [], 'seagull': [], 'sea urchin': [], 'sea anemone': [], 'turtle': [], 'sea lion': [], 'human': [], 'orangutans': [], 'unidentified': []}))
