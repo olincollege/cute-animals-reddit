@@ -1,5 +1,11 @@
 # Cute Reddit Animals on r/aww
+## Authors: Raiyan Siddique and An Grocki
+## Summary
 
+Our project aims to find the cutest animals in the r/aww subreddit by analyzing the top 1000 posts of all time and its comments on the subreddit. We create 3 visualizations to represent our data:
+1. Bar graphs to show how many total upvotes and total comments each animal has in the top 1000 posts. This visualization is used to decide the top 4 animals. 
+2. Word Clouds that show what words are frequently used in the comments to describe the top 4 animals.
+3. Linear Time graphs to show over the years what proportion of upvotes and comments the top 4 animals have.
 ## Requirements
 Our code requires matplotlib, pandas, praw and wordcloud libraries to run correctly. Execute the folloiwng commands in the terminal to get those libraries.
 ```shell
@@ -8,14 +14,6 @@ pip install matplotlib
 pip install praw
 pip install wordcloud
 ```
-
-
-## Summary
-
-Our project aims to find the cutest animals in the r/aww subreddit by analyzing the top 1000 posts of all time and its comments on the subreddit. We create 3 visualizations to represent our data:
-1. Bar graphs to show how many total upvotes and total comments each animal has in the top 1000 posts. This visualization is used to decide the top 4 animals. 
-2. Word Clouds that show what words are frequently used in the comments to describe the top 4 animals.
-3. Linear Time graphs to show over the years what proportion of upvotes and comments the top 4 animals have.
 
 ## Instructions
 1. In order to get data from Reddit using praw, you must also create a `config.py` file in the following format:
@@ -49,9 +47,7 @@ Note: If you want to get more or less posts from the subreddit you change the li
     ```python
     time_graph_plot(['dog', 'cat', 'human', 'bird'])
     ```
-    Note: If you are taking the data in the future or taking more data than 1000 posts, you may have to add a line after line 46 in the `time_graph.py` file that adds that year into the dictionaries. For example:
+    Note: If you are taking the data in the future or taking more data than 1000 posts, you may have to add to the `year_list` variable in the `organize_by_time` function in the `time_graph.py` For example:
     ```python
-        if 2023 not in upvotes_time:
-            upvotes_time[2023] = 0
-            comments_time[2023] = 0
+        year_list = [2016, 2017, 2018, 2019, 2020, 2021, 2022]
     ```
