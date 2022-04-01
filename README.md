@@ -49,3 +49,9 @@ Note: If you want to get more or less posts from the subreddit you change the li
     ```python
     time_graph_plot(['dog', 'cat', 'human', 'bird'])
     ```
+    Note: If you are taking the data in the future or taking more data than 1000 posts, you may have to add a line after line 46 in the `time_graph.py` file that adds that year into the dictionaries. For example:
+    ```python
+        if 2023 not in upvotes_time:
+            upvotes_time[2023] = 0
+            comments_time[2023] = 0
+    ```
