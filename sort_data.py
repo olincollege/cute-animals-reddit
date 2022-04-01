@@ -14,7 +14,8 @@ def find_number_mentions(post_id, data_table):
 
     This function counts how many times each animal is mentioned in the comments
         based on the name of the animal and its alternate names. It also checks
-        for variations by looking for keywords within words used to name an animal.
+        for variations by looking for keywords within words
+            used to name an animal.
 
     Args:
         post_id: A string that contains the id of a post.
@@ -114,7 +115,8 @@ def sort_posts(animal_csv, data):
         post_sorted[ids] = post_animal
     return post_sorted, animals_id
 #Sorts all the posts based on our list of animal names
-all_posts_sorted, all_ids_sorted = sort_posts('animal_list.csv', pd.read_fwf('data/general_data1.txt'))
+all_posts_sorted, all_ids_sorted = sort_posts('animal_list.csv',\
+     pd.read_fwf('data/general_data1.txt'))
 with open('data/sorted_animals.txt', 'w', encoding='utf8') as sorted_animals:
     sorted_animals.write(str(all_posts_sorted))
 with open('data/animals_posts.txt', 'w', encoding='utf8') as animals_posts:

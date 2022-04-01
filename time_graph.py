@@ -49,13 +49,10 @@ def organize_by_time(animal, table_path, sorted_post_path):
                 ['score'])
         comments_time[time] += int(data_table.loc[data_table['id'] == post_id]\
                 ['num_comments'])
-    #Sorts upvotes and comments by year.
-    upvote = sorted(upvotes_time.items())
-    comments = sorted(comments_time.items())
-    graph_year = [x[0] for x in upvote]
-    graph_upvotes = [x[1] for x in upvote]
-    graph_comments = [x[1] for x in comments]
-    return graph_year, graph_upvotes, graph_comments
+    #Sorts upvotes and comments by year and returns it
+    return [x[0] for x in sorted(upvotes_time.items())],\
+         [x[1] for x in sorted(upvotes_time.items())], \
+             [x[1] for x in sorted(comments_time.items())]
 
 def get_total(top_animals, table_path, sorted_post_path):
     '''
@@ -75,7 +72,8 @@ def get_total(top_animals, table_path, sorted_post_path):
             animals specified for each year
     '''
     for animal in top_animals:
-        locals()[animal] = organize_by_time(animal, table_path, sorted_post_path)
+        locals()[animal] = organize_by_time(animal, table_path,\
+             sorted_post_path)
     total_upvotes = []
     total_comments = []
     for index, _ in enumerate(locals()[top_animals[0]][0]):
@@ -100,23 +98,27 @@ def get_proportion(top_animals, table_path, sorted_post_path):
         sorted_post_path: a string that is the path to a txt file
             with all the posts categorized into animals
     Returns:
-        upvotes_dictionary: a dictionary with all the proportions of upvotes for each animal
-            for each year
-        comments_dictionary: a dictionary with all the proportions of comments for each animal
-            for each year
+        upvotes_dictionary: a dictionary with all the proportions of
+            upvotes for each animal for each year
+        comments_dictionary: a dictionary with all the proportions
+            of comments for each animal for each year
     '''
     upvotes_dictionary = {}
     comments_dictionary = {}
-    total_comments, total_upvotes = get_total(top_animals, table_path, sorted_post_path)
+    total_comments, total_upvotes = get_total(top_animals, table_path,\
+         sorted_post_path)
     for animal in top_animals:
-        locals()[animal] = organize_by_time(animal, table_path, sorted_post_path)
+        locals()[animal] = organize_by_time(animal, table_path,\
+             sorted_post_path)
     for animal in top_animals:
         var_name_upvotes = f'percentage_{animal}_upvotes'
         var_name_comments = f'percentage_{animal}_comments'
         upvotes_dictionary[var_name_upvotes] = [x/total_upvotes[index] for \
-            index, x in enumerate(locals()[animal][1]) if total_upvotes[index] != 0]
+            index, x in enumerate(locals()[animal][1]) if \
+                total_upvotes[index] != 0]
         comments_dictionary[var_name_comments] = [x/total_comments[index] for \
-            index, x in enumerate(locals()[animal][2]) if total_upvotes[index] != 0]
+            index, x in enumerate(locals()[animal][2]) \
+                if total_upvotes[index] != 0]
     return upvotes_dictionary, comments_dictionary
 
 def time_graph_plot(top_animals):
@@ -127,14 +129,16 @@ def time_graph_plot(top_animals):
         top_animals: a list of strings that represents the
             top animals you want to plot
     '''
-    upvotes_proportions, comments_proportions = get_proportion(top_animals, 'data/general_data1.txt', 'data/animals_posts.txt')
+    upvotes_proportions, comments_proportions = get_proportion(top_animals,\
+         'data/general_data1.txt', 'data/animals_posts.txt')
     #Graphs time plot for upvotes of the top 4 animals.
     plt.figure()
     plt.title('Time Graph of Upvotes Proportion on Top 1000 Posts')
     plt.xlabel('Year')
     plt.ylabel('Proportion of Upvotes')
     for animal in top_animals:
-        plt.plot(organize_by_time(animal, 'data/general_data1.txt', 'data/animals_posts.txt')[0],upvotes_proportions\
+        plt.plot(organize_by_time(animal, 'data/general_data1.txt',\
+             'data/animals_posts.txt')[0],upvotes_proportions\
             [f'percentage_{animal}_upvotes'], label= animal.capitalize())
     plt.legend()
     plt.savefig('visualizations/time_graph_upvotes.png')
@@ -144,7 +148,8 @@ def time_graph_plot(top_animals):
     plt.xlabel('Years')
     plt.ylabel('Proportion of Comments')
     for animal in top_animals:
-        plt.plot(organize_by_time(animal, 'data/general_data1.txt', 'data/animals_posts.txt')[0],comments_proportions\
+        plt.plot(organize_by_time(animal, 'data/general_data1.txt',\
+             'data/animals_posts.txt')[0],comments_proportions\
             [f'percentage_{animal}_comments'], label= animal.capitalize())
     plt.legend()
     plt.savefig('visualizations/time_graph_comments.png')
