@@ -45,6 +45,7 @@ def create_word_cloud(animal):
     plt.axis('off')
     plt.tight_layout(pad=0)
     plt.savefig(f'visualizations/{animal}wordcloud.png')
+    plt.show()
 #Creates a word cloud for the top 4 cutest animals based on the bar graphs.
 create_word_cloud('dog')
 create_word_cloud('cat')

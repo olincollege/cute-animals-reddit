@@ -66,34 +66,41 @@ def sort_graph(data, animal_list):
         sorted_data['x']))).set_index(1)
     return sorted_data
 
-upvote_animals, comments_animals, list_animals = \
-  find_totals(pd.read_fwf('data/general_data1.txt'), 'data/animals_posts.txt')
-upvotes_sorted = sort_graph(upvote_animals, list_animals)
-comments_sorted = sort_graph(comments_animals, list_animals)
-#Plots and formats upvote bar graph.
-plt.figure()
-upvote_graph = plt.subplot()
-upvotes_sorted.plot.bar(width = 0.8, align='center', legend =None,\
-     figsize=(12,9))
-plt.title('Upvotes per Animal', fontsize = 35)
-plt.xlabel('Animal', fontsize = 25)
-plt.ylabel('Upvotes',fontsize = 25)
-plt.xticks(fontsize=20)
-plt.yticks(fontsize=20)
-plt.ticklabel_format(axis="y", style="plain")
-plt.setp(upvote_graph.get_xticklabels(), rotation=70)
-plt.tight_layout()
-plt.savefig('visualizations/upvotes.png')
-#Plots and formats comments bar graph.
-plt.figure(figsize=(12, 10), dpi=80)
-comment_graph = plt.subplot()
-comments_sorted.plot.bar(width = 0.8, align='center', legend =None,\
-     figsize=(11, 9))
-plt.title('Comments per Animal',fontsize = 35)
-plt.xlabel('Animal',fontsize = 25)
-plt.ylabel('Number of Comments',fontsize = 25)
-plt.xticks(fontsize=20)
-plt.yticks(fontsize=20)
-plt.setp(comment_graph.get_xticklabels(), rotation=70)
-plt.tight_layout()
-plt.savefig('visualizations/comments.png')
+
+def upvotes_bar_graph():
+    #Plots and formats upvote bar graph.
+    upvote_animals, comments_animals, list_animals = \
+    find_totals(pd.read_fwf('data/general_data1.txt'), 'data/animals_posts.txt')
+    upvotes_sorted = sort_graph(upvote_animals, list_animals)
+    upvote_graph = plt.subplot()
+    upvotes_sorted.plot.bar(width = 0.8, align='center', legend =None,\
+        figsize=(12,9))
+    plt.title('Upvotes per Animal', fontsize = 35)
+    plt.xlabel('Animal', fontsize = 25)
+    plt.ylabel('Upvotes',fontsize = 25)
+    plt.xticks(fontsize=20)
+    plt.yticks(fontsize=20)
+    plt.ticklabel_format(axis="y", style="plain")
+    plt.setp(upvote_graph.get_xticklabels(), rotation=70)
+    plt.tight_layout()
+    plt.savefig('visualizations/upvotes.png')
+    plt.show(1)
+def comments_bar_graph():
+    #Plots and formats comments bar graph.
+    upvote_animals, comments_animals, list_animals = \
+    find_totals(pd.read_fwf('data/general_data1.txt'), 'data/animals_posts.txt')
+    comments_sorted = sort_graph(comments_animals, list_animals)
+    comment_graph = plt.subplot()
+    comment_graph = comments_sorted.plot.bar(width = 0.8, align='center', legend =None,\
+        figsize=(11, 9))
+    plt.title('Comments per Animal',fontsize = 35)
+    plt.xlabel('Animal',fontsize = 25)
+    plt.ylabel('Number of Comments',fontsize = 25)
+    plt.xticks(fontsize=20)
+    plt.yticks(fontsize=20)
+    plt.setp(comment_graph.get_xticklabels(), rotation=70)
+    plt.tight_layout()
+    plt.savefig('visualizations/comments.png')
+    plt.show()
+comments_bar_graph()
+upvotes_bar_graph()

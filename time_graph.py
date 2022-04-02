@@ -121,7 +121,7 @@ def get_proportion(top_animals, table_path, sorted_post_path):
                 if total_upvotes[index] != 0]
     return upvotes_dictionary, comments_dictionary
 
-def time_graph_plot(top_animals):
+def time_graph_plot_upvotes(top_animals):
     '''
     Plots a time graph for the proportion of upvotes and comments
         each animal had during each year
@@ -142,7 +142,11 @@ def time_graph_plot(top_animals):
             [f'percentage_{animal}_upvotes'], label= animal.capitalize())
     plt.legend()
     plt.savefig('visualizations/time_graph_upvotes.png')
+    plt.show()
     #Graphs time plot for comments of the top 4 animals.
+def time_graph_plot_comments(top_animals):
+    upvotes_proportions, comments_proportions = get_proportion(top_animals,\
+     'data/general_data1.txt', 'data/animals_posts.txt')
     plt.figure()
     plt.title('Time Graph of Comment Proportion on Top 1000 Posts')
     plt.xlabel('Years')
@@ -153,5 +157,7 @@ def time_graph_plot(top_animals):
             [f'percentage_{animal}_comments'], label= animal.capitalize())
     plt.legend()
     plt.savefig('visualizations/time_graph_comments.png')
+    plt.show()
 
-time_graph_plot(['dog', 'cat', 'human', 'bird'])
+time_graph_plot_upvotes(['dog', 'cat', 'human', 'bird'])
+time_graph_plot_comments(['dog', 'cat', 'human', 'bird'])
