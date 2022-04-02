@@ -1,11 +1,11 @@
 '''
-Tests that functions in time_graph.py work properly
+Tests that functions in time_graph.py work properly.
 '''
 
 from time_graph import organize_by_time, get_total, get_proportion
 def test_organize_by_time_one_post():
     '''
-    Tests that given an animal with only one post, the data is sorted properly
+    Tests that given an animal with only one post, the data is sorted properly.
     '''
 
     assert((organize_by_time('dog', \
@@ -16,7 +16,7 @@ def test_organize_by_time_one_post():
 def test_organize_by_time_multiple_posts():
     '''
     Tests that given an animal with more than one post,
-        the data is sorted properly
+        the data is sorted properly.
     '''
     assert(organize_by_time('cat', \
         'data/test_files/test_general_data_time_graph.txt',\
@@ -27,7 +27,7 @@ def test_organize_by_time_multiple_posts():
 
 def test_organize_by_time_multiple_posts_same_time():
     '''
-    Tests that given an animal with posts at the same time are added properly
+    Tests that given an animal with posts at the same time are added properly.
     '''
     assert(organize_by_time('bird', \
         'data/test_files/test_general_data_time_graph.txt',\
@@ -38,7 +38,7 @@ def test_organize_by_time_multiple_posts_same_time():
 def test_get_total_one_animal():
     '''
     Checks that the total comments and upvotes is right when given
-        just one animal
+        just one animal.
     '''
     assert(get_total(['dog'], \
         'data/test_files/test_general_data_time_graph.txt',\
@@ -48,7 +48,7 @@ def test_get_total_one_animal():
 def test_get_total_multiple_animals():
     '''
     Checks that the total comments and upvotes is right when given
-        multiple animals
+        multiple animals.
     '''
     assert(get_total(['dog', 'cat', 'bird'], \
         'data/test_files/test_general_data_time_graph.txt', \
@@ -58,7 +58,7 @@ def test_get_total_multiple_animals():
 
 def test_get_proportion_one_animal():
     '''
-    Checks that when given one animal the proportion for every year is 1.0
+    Checks that when given one animal the proportion for every year is 1.0.
     '''
     #running this generates percentage_dog_upvotes and percentage_dog_comments
     upvotes_dict, comments_dict = get_proportion(['dog'], \
@@ -69,7 +69,7 @@ def test_get_proportion_one_animal():
 def test_get_proportions_multiple_animals():
     '''
     Tests that given multiple animals across different years it
-     gives the correct proportions
+     gives the correct proportions.
     '''
     assert(get_proportion(['dog', 'cat', 'bird'], \
         'data/test_files/test_general_data_time_graph.txt', \
