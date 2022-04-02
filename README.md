@@ -13,6 +13,7 @@ pip install pandas
 pip install matplotlib
 pip install praw
 pip install wordcloud
+pip install datetime
 ```
 
 ## Instructions
