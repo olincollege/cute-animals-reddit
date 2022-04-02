@@ -129,7 +129,7 @@ def time_graph_plot_upvotes(top_animals):
         top_animals: A list of strings that represents the
             top animals you want to plot.
     '''
-    upvotes_proportions, comments_proportions = get_proportion(top_animals,\
+    upvotes_proportions, _ = get_proportion(top_animals,\
          'data/general_data1.txt', 'data/animals_posts.txt')
     #Graphs time plot for upvotes of the top 4 animals.
     plt.figure()
@@ -152,7 +152,7 @@ def time_graph_plot_comments(top_animals):
         top_animals: A list of strings that represents the
             top animals you want to plot.
     '''
-    upvotes_proportions, comments_proportions = get_proportion(top_animals,\
+    _, comments_proportions = get_proportion(top_animals,\
      'data/general_data1.txt', 'data/animals_posts.txt')
     plt.figure()
     plt.title('Time Graph of Comment Proportion on Top 1000 Posts')

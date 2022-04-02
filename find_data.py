@@ -1,6 +1,6 @@
 '''
 Scrapes Reddit to get all the top level comments and other associated data
-    from the top 1000 posts in r/awww
+    from the top 1000 posts in /r/awww.
 '''
 import pandas as pd
 from config import reddit

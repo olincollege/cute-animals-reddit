@@ -1,7 +1,7 @@
 '''
 Identifies which animals each post represents using the comments and titles
     and creates files containing which posts are with each animal and which
-    animals are with each post
+    animals are with each post.
 '''
 import csv
 import pandas as pd
@@ -60,11 +60,11 @@ def find_which_animal(counts):
         in a post's comments and titles and determines which animals the post
         is about.
     Args:
-        counts: a dictionary that has each animal as a key that has a value
+        counts: A dictionary that has each animal as a key that has a value
                 that represents how many times it is mentioned in a posts
                 comments or title.
     Returns:
-        found_animals: a list that has the animal/animals that are in the post.
+        found_animals: A list that has the animal/animals that are in the post.
     '''
     total = 0
     found_animals = []
@@ -82,9 +82,9 @@ def find_which_animal(counts):
 def sort_posts(animal_csv, data):
     '''
     Takes in a csv where each row is all the potential names a pet
-        can be called and sorts each post into which animal it is
+        can be called and sorts each post into which animal it is.
     Args:
-        animal_csv: a string that is the path for a csv file
+        animal_csv: A string that is the path for a csv file
             where each row is all the potential names an animal
             can be called.
         data: A panda that contains data about the post,

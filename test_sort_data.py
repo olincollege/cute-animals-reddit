@@ -1,5 +1,5 @@
 '''
-Tests that functions in sort_data.py work properly
+Tests that functions in sort_data.py work properly.
 '''
 import pandas as pd
 from sort_data import find_number_mentions, find_which_animal, sort_posts
@@ -7,7 +7,7 @@ from sort_data import find_number_mentions, find_which_animal, sort_posts
 def test_find_number_mentions_only_dog():
     '''
     Tests that a test file with only dog mentions and dog title has
-     the correct number of dog mentions
+     the correct number of dog mentions.
     '''
 
     assert(find_number_mentions('00000a', pd.read_fwf\
@@ -29,7 +29,7 @@ def test_find_number_mentions_only_dog():
 def test_find_number_mentions_multiple_animals():
     '''
     Tests that a test file with mentions of more than one animal counts
-     all the animals properly
+     all the animals properly.
     '''
     assert(find_number_mentions('00000b', \
         pd.read_fwf('data/test_files/test_general_data.txt')) == \
@@ -51,7 +51,7 @@ def test_find_number_mentions_multiple_animals():
 def test_find_number_mentions_with_words():
     '''
     Tests that a test file with many non-animal words still
-        counts animals correctly
+        counts animals correctly.
     '''
     assert(find_number_mentions('00000c', \
         pd.read_fwf('data/test_files/test_general_data.txt')) \
@@ -72,34 +72,34 @@ def test_find_number_mentions_with_words():
         'orangutans': 0, 'unidentified': 0})
 def test_find_which_animal_only_dog():
     '''
-    Tests that a count with only dogs correctly sorts the post as a dog
+    Tests that a count with only dogs correctly sorts the post as a dog.
     '''
     assert find_which_animal({'dog': 10, 'cat': 0}) == ['dog']
 
 def test_find_which_animal_cat_mixed():
     '''
     Tests that given a mixed count with a majority cat still sorts
-         a post as cat
+         a post as cat.
     '''
     assert find_which_animal({'dog': 1, 'cat': 9}) == ['cat']
 
 def test_find_which_animal_two():
     '''
     Tests that when there are two animals in a post mentioned a lot
-        both are outputted
+        both are outputted.
     '''
     assert find_which_animal({'dog': 9, 'cat': 9}) == ['dog', 'cat']
 
 def test_find_which_animal_undefined():
     '''
     Tests that when given less than 5 mentions of any animal the post is
-        undefined
+        undefined.
     '''
     assert find_which_animal({'dog': 2, 'cat': 2}) == ['undefined']
 
 def test_sort_posts():
     '''
-    Tests overall sorting for the 3 test files
+    Tests overall sorting for the 3 test files.
     '''
     assert(sort_posts('animal_list.csv', \
         pd.read_fwf('data/test_files/test_general_data.txt'))\

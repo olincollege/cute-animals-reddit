@@ -1,5 +1,5 @@
 '''
-Tests that functions in bar_graph.py work properly
+Tests that functions in bar_graph.py work properly.
 '''
 import pandas as pd
 from bar_graphs import find_totals, sort_graph
@@ -23,7 +23,7 @@ def test_sorted_graph_reverse_ordered():
     assert(test_pd.equals((sort_graph([1, 2, 3], ['1', '2', '3']))))
 def test_sorted_graph_ordered():
     '''
-    Tests that a data that is ordered stays the same
+    Tests that a data that is ordered stays the same.
     '''
     test_pd = pd.DataFrame({'x': ['3', '2', '1'], 'y': [3, 2, 1]})
     test_pd  = pd.DataFrame(list(zip(test_pd['y'],\
@@ -31,7 +31,7 @@ def test_sorted_graph_ordered():
     assert(test_pd.equals((sort_graph([3, 2, 1], ['3', '2', '1']))))
 def test_sorted_graph_disorganized():
     '''
-    Tests that a data that is ordered stays the same
+    Tests that a data that is ordered stays the same.
     '''
     test_pd = pd.DataFrame({'x': ['3', '2', '1'], 'y': [3, 2, 1]})
     test_pd  = pd.DataFrame(list(zip(test_pd['y'],\
