@@ -8,11 +8,11 @@ def test_organize_by_time_one_post():
     Tests that given an animal with only one post, the data is sorted properly.
     '''
 
-    assert (organize_by_time('dog', \
+    assert organize_by_time('dog', \
         'data/test_files/test_general_data_time_graph.txt', \
             'data/test_files/test_animals_posts.txt') == \
                 ([2016, 2017, 2018, 2019, 2020, 2021, 2022],\
-                     [0, 0, 0, 0, 100000, 0, 0], [0, 0, 0, 0, 1000, 0, 0]))
+                     [0, 0, 0, 0, 100000, 0, 0], [0, 0, 0, 0, 1000, 0, 0])
 def test_organize_by_time_multiple_posts():
     '''
     Tests that given an animal with more than one post,
