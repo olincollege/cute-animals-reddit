@@ -13,15 +13,15 @@ def find_totals(data_table, animal_sorted):
     This function finds the total number of upvotes and comments for each
         animal in animal_list.csv.
     Args:
-        data_table: a panda with all the data about each post
-        animal_sorted: a string that has a path to a file with
-            all the post ids sorted into animals
+        data_table: A panda with all the data about each post.
+        animal_sorted: A string that has a path to a file with
+            all the post ids sorted into animals.
 
     Returns:
-        upvotes_total: a list with the total number of upvotes for each animal
-        comments_total: a list with the total number of comments for each
-            animal
-        x_axis: a list of all the animals with any upvotes or comments
+        upvotes_total: A list with the total number of upvotes for each animal.
+        comments_total: A list with the total number of comments for each
+            animal.
+        x_axis: A list of all the animals with any upvotes or comments.
     '''
     with open(animal_sorted, 'r',  encoding="utf8") as animals_id:
         animals_dict = ast.literal_eval(str(animals_id.read()))
@@ -48,16 +48,16 @@ def find_totals(data_table, animal_sorted):
 def sort_graph(data, animal_list):
     '''
     Takes data and the x axis associated with it and sorts it in descending
-        order
+        order.
 
     Args:
-        data: a list with the total where the index is associated with
-            an animal in animal_list
-        animal_list: a list with animals where each index is associated
-            with a value in data
+        data: A list with the total where the index is associated with
+            an animal in animal_list.
+        animal_list: A list with animals where each index is associated
+            with a value in data.
     Returns:
-        sorted_data: a panda with the sorted x axis and y axis in
-             descending order
+        sorted_data: A panda with the sorted x axis and y axis in
+             descending order.
     '''
     sorted_data = pd.DataFrame({'x': animal_list, 'y': data})
     sorted_data = sorted_data.sort_values('y')
@@ -68,7 +68,9 @@ def sort_graph(data, animal_list):
 
 
 def upvotes_bar_graph():
-    #Plots and formats upvote bar graph.
+    """
+    Plots and formats the upvotes bar graph. 
+    """
     upvote_animals, comments_animals, list_animals = \
     find_totals(pd.read_fwf('data/general_data1.txt'), 'data/animals_posts.txt')
     upvotes_sorted = sort_graph(upvote_animals, list_animals)
@@ -87,7 +89,9 @@ def upvotes_bar_graph():
     plt.savefig('visualizations/upvotes.png')
     plt.show()
 def comments_bar_graph():
-    #Plots and formats comments bar graph.
+    """
+    Plots and formats the comments bar graph. 
+    """
     upvote_animals, comments_animals, list_animals = \
     find_totals(pd.read_fwf('data/general_data1.txt'), 'data/animals_posts.txt')
     comments_sorted = sort_graph(comments_animals, list_animals)
@@ -104,5 +108,5 @@ def comments_bar_graph():
     plt.tight_layout()
     plt.savefig('visualizations/comments.png')
     plt.show()
-upvotes_bar_graph()
 comments_bar_graph()
+upvotes_bar_graph()
