@@ -10,7 +10,7 @@ def test_find_number_mentions_only_dog():
      the correct number of dog mentions.
     '''
 
-    assert(find_number_mentions('00000a', pd.read_fwf\
+    assert find_number_mentions('00000a', pd.read_fwf\
         ('data/test_files/test_general_data.txt')) == {'dog': 9, 'rabbit': 0,\
         'bird': 0, 'cat': 0, 'hamster': 0, 'cow': 0, 'shrimp': 0, 'pig': 0, \
         'crab': 0, 'deer': 0, 'sheep': 0, 'fish': 0, 'squirrel': 0, 'panda': 0\
@@ -24,14 +24,14 @@ def test_find_number_mentions_only_dog():
         'seal': 0, 'octopus': 0, 'shark': 0, 'seahorse': 0, 'walrus': 0,\
         'whale': 0, 'jellyfish': 0, 'squid': 0, 'lobster': 0, 'clams': 0,\
         'seagull': 0, 'sea urchin': 0,'sea anemone': 0, 'turtle': 0, \
-            'sea lion': 0, 'human': 0, 'orangutans': 0, 'unidentified': 0})
+            'sea lion': 0, 'human': 0, 'orangutans': 0, 'unidentified': 0}
 
 def test_find_number_mentions_multiple_animals():
     '''
     Tests that a test file with mentions of more than one animal counts
      all the animals properly.
     '''
-    assert(find_number_mentions('00000b', \
+    assert find_number_mentions('00000b', \
         pd.read_fwf('data/test_files/test_general_data.txt')) == \
             {'dog': 1, 'rabbit': 1, 'bird': 0, 'cat': 6, 'hamster': 0,\
             'cow': 0, 'shrimp': 0, 'pig': 0, 'crab': 0, 'deer': 0,\
@@ -46,14 +46,14 @@ def test_find_number_mentions_multiple_animals():
            0,'octopus': 0, 'shark': 0, 'seahorse': 0, 'walrus': 0, 'whale': 0,\
            'jellyfish': 0, 'squid': 0, 'lobster': 0, 'clams': 0, 'seagull': 0,\
             'sea urchin': 0, 'sea anemone': 0, 'turtle': 0, 'sea lion': 0,\
-            'human': 0, 'orangutans': 0, 'unidentified': 0})
+            'human': 0, 'orangutans': 0, 'unidentified': 0}
 
 def test_find_number_mentions_with_words():
     '''
     Tests that a test file with many non-animal words still
         counts animals correctly.
     '''
-    assert(find_number_mentions('00000c', \
+    assert find_number_mentions('00000c', \
         pd.read_fwf('data/test_files/test_general_data.txt')) \
             == {'dog': 2, 'rabbit': 0,\
         'bird': 7, 'cat': 1, 'hamster': 0, 'cow': 0, 'shrimp': 0, 'pig': 0,\
@@ -69,7 +69,7 @@ def test_find_number_mentions_with_words():
         'walrus': 0, 'whale': 0, 'jellyfish': 0, 'squid': 0,\
         'lobster': 0, 'clams': 0, 'seagull': 0, 'sea urchin': 0,\
         'sea anemone': 0, 'turtle': 0, 'sea lion': 0, 'human': 0,\
-        'orangutans': 0, 'unidentified': 0})
+        'orangutans': 0, 'unidentified': 0}
 def test_find_which_animal_only_dog():
     '''
     Tests that a count with only dogs correctly sorts the post as a dog.
@@ -101,7 +101,7 @@ def test_sort_posts():
     '''
     Tests overall sorting for the 3 test files.
     '''
-    assert(sort_posts('animal_list.csv', \
+    assert sort_posts('animal_list.csv', \
         pd.read_fwf('data/test_files/test_general_data.txt'))\
         == ({'00000a': ['dog'], '00000b': ['cat'], \
         '00000c': ['bird'], '00000d': ['cat']}, {'dog': \
@@ -118,4 +118,4 @@ def test_sort_posts():
         'shark': [], 'seahorse': [], 'walrus': [], 'whale': [], 'jellyfish':\
         [], 'squid': [], 'lobster': [], 'clams': [], 'seagull': [], \
         'sea urchin': [], 'sea anemone': [], 'turtle': [], 'sea lion':\
-         [], 'human': [], 'orangutans': [], 'unidentified': []}))
+         [], 'human': [], 'orangutans': [], 'unidentified': []})
