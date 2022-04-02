@@ -11,13 +11,13 @@ import matplotlib.pyplot as plt
 def organize_by_time(animal, table_path, sorted_post_path):
     '''
     Finds the total number of upvotes and comments for a specific
-        animal for each year within the top 1000 posts in r/aww.
+        animal for each year within the top 1000 posts in /r/aww.
     Args:
         animal: a string that is an animal name.
         table_path: a string that is a path to a txt file with
-            a table with information about each post
+            a table with information about each post.
         sorted_post_path: a string that is the path to a txt file
-            with all the posts categorized into animals
+            with all the posts categorized into animals.
     Returns:
         graph_year: a list that is all the years within the top 1000 posts.
         graph_upvotes: a list with total number of upvotes for each year
@@ -57,19 +57,19 @@ def organize_by_time(animal, table_path, sorted_post_path):
 def get_total(top_animals, table_path, sorted_post_path):
     '''
     For a given list of animals, finds the total number of upvotes given
-        to all specified animals for each year
+        to all specified animals for each year.
     Args:
-        top_animals: a list of strings that represents the top
-            animals you want to visualize
-        table_path: a string that is a path to a txt file with
-            a table with information about each post
-        sorted_post_path: a string that is the path to a txt file
-            with all the posts categorized into animals
+        top_animals: A list of strings that represents the top
+            animals you want to visualize.
+        table_path: A string that is a path to a txt file with
+            a table with information about each post.
+        sorted_post_path: A string that is the path to a txt file
+            with all the posts categorized into animals.
     Returns:
-        total_comments: a list of the total number of comments for all the
-            animals pecified for each year
-        total_upvotes: a list of the total number of upvotes for all the
-            animals specified for each year
+        total_comments: A list of the total number of comments for all the
+            animals pecified for each year.
+        total_upvotes: A list of the total number of upvotes for all the
+            animals specified for each year.
     '''
     for animal in top_animals:
         locals()[animal] = organize_by_time(animal, table_path,\
@@ -91,17 +91,17 @@ def get_proportion(top_animals, table_path, sorted_post_path):
     Given a list of animals, finds the proportion of upvotes and
         comments each animal had compared to the others for each year.
     Args:
-        top_animals: a list of strings that represents the top animals you want
-            to find proportions for
-        table_path: a string that is a path to a txt file with
-            a table with information about each post
-        sorted_post_path: a string that is the path to a txt file
-            with all the posts categorized into animals
+        top_animals: A list of strings that represents the top animals you want
+            to find proportions for.
+        table_path: A string that is a path to a txt file with
+            a table with information about each post.
+        sorted_post_path: A string that is the path to a txt file
+            with all the posts categorized into animals.
     Returns:
-        upvotes_dictionary: a dictionary with all the proportions of
-            upvotes for each animal for each year
-        comments_dictionary: a dictionary with all the proportions
-            of comments for each animal for each year
+        upvotes_dictionary: A dictionary with all the proportions of
+            upvotes for each animal for each year.
+        comments_dictionary: A dictionary with all the proportions
+            of comments for each animal for each year.
     '''
     upvotes_dictionary = {}
     comments_dictionary = {}
@@ -123,11 +123,11 @@ def get_proportion(top_animals, table_path, sorted_post_path):
 
 def time_graph_plot_upvotes(top_animals):
     '''
-    Plots a time graph for the proportion of upvotes and comments
-        each animal had during each year
+    Plots and shows a time graph for the proportion of upvotes each animal
+        had during each year.
     Args:
-        top_animals: a list of strings that represents the
-            top animals you want to plot
+        top_animals: A list of strings that represents the
+            top animals you want to plot.
     '''
     upvotes_proportions, comments_proportions = get_proportion(top_animals,\
          'data/general_data1.txt', 'data/animals_posts.txt')
@@ -145,6 +145,13 @@ def time_graph_plot_upvotes(top_animals):
     plt.show()
     #Graphs time plot for comments of the top 4 animals.
 def time_graph_plot_comments(top_animals):
+    '''
+    Plots and shows a time graph for the proportion of comments each animal
+        had during each year.
+    Args:
+        top_animals: A list of strings that represents the
+            top animals you want to plot.
+    '''
     upvotes_proportions, comments_proportions = get_proportion(top_animals,\
      'data/general_data1.txt', 'data/animals_posts.txt')
     plt.figure()
