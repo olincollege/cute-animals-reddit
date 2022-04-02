@@ -7,7 +7,7 @@ Our project aims to find the cutest animals in the r/aww subreddit by analyzing 
 2. Word Clouds that show what words are frequently used in the comments to describe the top 4 animals.
 3. Linear Time graphs to show over the years what proportion of upvotes and comments the top 4 animals have.
 ## Requirements
-Our code requires matplotlib, pandas, praw and wordcloud libraries to run correctly. Execute the folloiwng commands in the terminal to get those libraries.
+Our code requires matplotlib, pandas, praw and wordcloud libraries to run correctly. Execute the following commands in the terminal to get those libraries.
 ```shell
 pip install pandas
 pip install matplotlib
